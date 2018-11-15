@@ -65,7 +65,7 @@
             
         <!--daily weather -->
         <div id ="daily-weather-wrapper" class="lower-panel-body">
-            <div class ="flex-container weather-box current-day-of-the-week">
+            <div class ="flex-container weather-box">
                 <div>
                     <h1>Sunday</h1>
                 </div>
@@ -79,6 +79,56 @@
                 </div>
             </div>
         </div>
+        
+                <!--hourly weather -->
+        <div id ="hourly-weather-wrapper" class="lower-panel-body">
+            <div class ="flex-container weather-box">
+                <div>
+                    <h1>14:00</h1>
+                </div>
+                <div class="flex-container">
+                    <div>
+                        <p>18&#176</p>
+                    </div>
+                    <div>
+                        <img class= "icon-sm-30" src="./assets/images/summary-icons/clear-day-grey.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        </section>
+        
+                <!-- menu container -->
+        <section id="menu-container">
+            <button id="close-menu-btn" class="ripple">
+                &#10006;
+            </button>
+
+            <!-- container -->
+            <div>
+
+                <!-- add location -->
+                <div id="add-location-wrapper">
+                    <input type="text" placeholder="Location" id="location-input">
+                    <br>
+                    <button class="ripple disabled" id="add-city-btn" disabled>Add City</button>
+                    <h1 class="location-label">Brasov</h1>
+                </div>
+
+                <!-- saved cities -->
+                <div id="saved-cities-wrapper">
+                    <div class="flex-container saved-city-box">
+                        <div class="ripple">
+                            <h1>Brasov</h1>
+                        </div>
+                        <div>
+                            <button class="ripple remove-saved-city">-</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            </div>
         </section>
     </main>
     
