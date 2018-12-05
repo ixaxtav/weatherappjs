@@ -232,7 +232,8 @@ button{
 }
 
 .display-none{
-    display: none;
+    display: none !important;
+    
 }
 
 .icon-sm-25{
