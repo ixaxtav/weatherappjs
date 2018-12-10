@@ -1,4 +1,15 @@
+import $ from "jquery";
+import "bootstrap"; //breathecode dom for more explicit errors
+//import 'breathecode-dom'; //DOM override to make JS easier to use
+import "../style/index.scss";
 import axios from "axios";
+
+// /* **********************************************
+// **
+// ** UI Elements Module
+// **
+// ** - this module will be responsible for controling UI Elements like 'menu'
+// ** ******************************************** */
 
 const UI = (function() {
   let menu = document.querySelector("#menu-container");
@@ -19,10 +30,7 @@ const UI = (function() {
   const _showMenu = () => (menu.style.right = 0);
 
   // hide menu
-  // get menu width in %
-  const _hideMenu = () =>
-    (menu.style.right =
-      "-" + Math.round((menu.offsetWidth / window.innerWidth) * 100) + "%");
+  const _hideMenu = () => (menu.style.right = "-65%");
 
   const _toggleHourlyWeather = () => {
     let hourlyWeather = document.querySelector("#hourly-weather-wrapper"),
@@ -50,17 +58,6 @@ const UI = (function() {
       console.error(
         "Unknown state of the hourly weather panel and visible attribute"
       );
-  };
-
-  // show alert 'no city found'
-  const noCityFoundAlert = () => {
-    let alert = document.querySelector("#alert-city-not-foud");
-    alert.style.bottom = "20px";
-
-    // hide the alert after 2 seconds
-    setTimeout(() => {
-      alert.style.bottom = "-50px";
-    }, 2000);
   };
 
   // draw all the weather data on the interface
@@ -211,8 +208,7 @@ const UI = (function() {
   return {
     showApp,
     loadApp,
-    drawWeatherData,
-    noCityFoundAlert
+    drawWeatherData
   };
 })();
 
@@ -384,9 +380,11 @@ const WEATHER = (function() {
   const darkSkyKey = "5316e38e0e7585a469d63096fea53517",
     geocoderKey = "a73007ade8834599b607f2d044b3006a";
 
+  // return a valid URL for OpenCage API
   const _getGeocodeURL = location =>
     `https://api.opencagedata.com/geocode/v1/json?q=${location}&key=${geocoderKey}`;
 
+  // return a valid URL for DarkSky API
   const _getDarkSkyURL = (lat, lng) =>
     `https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/${darkSkyKey}/${lat},${lng}`;
 
@@ -416,8 +414,8 @@ const WEATHER = (function() {
       .then(res => {
         // if the location is invalid....
         if (res.data.results.length == 0) {
+          console.error("Invalid Location");
           UI.showApp();
-          UI.noCityFoundAlert();
           return;
         }
 
